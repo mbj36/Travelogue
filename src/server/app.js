@@ -13,6 +13,7 @@ import bodyParser from "body-parser";
 import helmet from "helmet";
 // import routes from "./api/routes";
 import connect from "./db";
+import GraphQLServer from './graphql/schema';
 
 // Express App
 const app = express();
@@ -38,6 +39,8 @@ app.use("/ping", function(req, res) {
   res.json({ reply: "pong" });
   res.end();
 });
+
+GraphQLServer.applyMiddleware({ app: app });
 
 // Mount the Routes
 // app.use("/v1", routes);
